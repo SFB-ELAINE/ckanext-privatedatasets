@@ -274,7 +274,9 @@ class PrivateDatasets(p.SingletonPlugin, tk.DefaultDatasetForm, DefaultPermissio
         return pkg_dict
 
     def after_search(self, search_results, search_params):
-        for result in search_results['results']:
+        remove = []
+        for i in range(len(search_results['results'])):
+            result = search_results['results'][i]
             # Extra fields should not be returned
             # The original list cannot be modified
             attrs = list(HIDDEN_FIELDS)
@@ -294,10 +296,13 @@ class PrivateDatasets(p.SingletonPlugin, tk.DefaultDatasetForm, DefaultPermissio
                 # NotAuthorized exception is risen when the user is not allowed
                 # to read the package.
                 attrs.append('resources')
+                remove.append(i)
 
             # Delete
             self._delete_pkg_atts(result, attrs)
 
+        search_results['results'] = [r for i, r in enumerate(search_results['results']) if i not in remove]
+        search_results['count'] -= len(remove)
         return search_results
 
     ####

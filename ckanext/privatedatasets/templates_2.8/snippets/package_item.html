@@ -22,7 +22,6 @@ Example:
 
 {% resource 'privatedatasets/custom.css' %}
 
-{% if not package.private or h.can_read(package) %}
 <li class="{{ item_class or "dataset-item" }}">
   {% block package_item_content %}
     <div class="dataset-content">
@@ -75,4 +74,3 @@ Example:
     {% endif %}
   {% endblock %}
 </li>
-{% endif %}
