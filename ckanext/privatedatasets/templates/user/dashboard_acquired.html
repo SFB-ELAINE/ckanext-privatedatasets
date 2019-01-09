@@ -7,13 +7,13 @@
 {% endblock %}
 
 {% block primary_content_inner %}
-  <h2 class="hide-heading">{{ _('Acquired Datasets') }}</h2>
+  <h2 class="hide-heading">{{ _('Shared Datasets') }}</h2>
   {% if acquired_datasets %}
     {% snippet 'snippets/package_list.html', packages=acquired_datasets %}
   {% else %}
     <p class="empty">
-      {{ _('You haven\'t acquired any datasets.') }}
-      {% link_for _('Acquire one now?'), controller='package', action='search' %}
+      {{ _('No datasets are currently shared with you.') }}
+      {# link_for _('Acquire one now?'), controller='package', action='search' #}
     </p>
   {% endif %}
 {% endblock %}
