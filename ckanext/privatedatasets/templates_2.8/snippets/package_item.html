@@ -45,7 +45,8 @@ Example:
              <div class="divider"/>
             {{ h.acquire_button(package) }}
         {% else %}
-            {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
+            {# updated to work with newer version of CKAN #}
+            {{ h.link_to(h.truncate(title, truncate_title), h.url_for('%s.read' % package.type, id=package.name)) }}
         {% endif %}
         <!-- End of customizations Acquire Button -->
 
